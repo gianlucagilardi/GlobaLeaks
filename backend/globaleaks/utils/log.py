@@ -71,9 +71,12 @@ def logFormatter(timestamp, request):
 
     if hasattr(request, 'start_time'):
         duration = timedelta_to_milliseconds(datetime.now() - request.start_time)
-
+        
     client_ip = '[REMOVED_IP_ADDRESS]'
     client_ua = '[REMOVED_USER_AGENT]'
+
+    request.log_ip_and_ua = True
+
 
     if request.log_ip_and_ua:
         client_ip = request.client_ip
