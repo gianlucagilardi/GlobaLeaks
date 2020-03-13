@@ -14,7 +14,7 @@ usage() {
   echo "Valid options:"
   echo " -h"
   echo -e " -t tagname (build specific release/branch)"
-  echo -e " -l (Use local repository & enviroment)"
+  echo -e " -f (first build)"
   echo -e " -d distribution (available: buster, bionic)"
   echo -e " -n (do not sign)"
   echo -e " -p (push on repository)"
@@ -30,7 +30,7 @@ while getopts "d:t:nph:l" opt; do
     ;;
     p) PUSH=1
     ;;
-    l) LOCAL_ENV=1
+    f) FIRST_INST=1
     ;;
     h)
         usage
@@ -73,23 +73,38 @@ fi
 ROOTDIR=$(pwd)
 
 BUILDSRC="GLRelease"
-[ -d $BUILDSRC ] && rm -rf $BUILDSRC
-mkdir $BUILDSRC && cd $BUILDSRC
 
-if [ $LOCAL_ENV -eq 1 ]; then
-  cd ../client/
-  ./node_modules/grunt/bin/grunt build
-  cd ../GLRelease
-  git clone --branch="$TAG" --depth=1 file://$(pwd)/../../GlobaLeaks
-  cp -rf ../client/build GlobaLeaks/client/
-else
+if [ $FIRST_INST -eq 1 ]; then
+  [ -d $BUILDSRC ] && rm -rf $BUILDSRC
+  mkdir $BUILDSRC && cd $BUILDSRC
   git clone --depth=1 https://github.com/gianlucagilardi/GlobaLeaks.git 
   cd GlobaLeaks
   git checkout $TAG
   cd client
   npm install
   ./node_modules/grunt/bin/grunt build
-fi
+else 
+  cd $BUILDSRC
+  cd GlobaLeaks
+  cd client
+  npm install
+  ./node_modules/grunt/bin/grunt build
+fi 
+
+##if [ $LOCAL_ENV -eq 1 ]; then
+##  cd ../client/
+##  ./node_modules/grunt/bin/grunt build
+##  cd ../GLRelease
+##  git clone --branch="$TAG" --depth=1 file://$(pwd)/../../GlobaLeaks
+##  cp -rf ../client/build GlobaLeaks/client/
+##else
+##  git clone --depth=1 https://github.com/gianlucagilardi/GlobaLeaks.git 
+##  cd GlobaLeaks
+##  git checkout $TAG
+##  cd client
+##  npm install
+##  ./node_modules/grunt/bin/grunt build
+## fi
 
 cd $ROOTDIR
 
