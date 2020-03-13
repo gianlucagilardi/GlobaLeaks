@@ -1,7 +1,7 @@
 {
   "name": "GlobaLeaks",
   "description": "GlobaLeaks - the first opensource framework for anonymous whistleblowing",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "license": "AGPL-3.0",
   "author": "Random GlobaLeaks Developers",
   "repository": {
@@ -54,7 +54,7 @@
     "node-gettext": "2.0.0",
     "npm-check-updates": "4.0.4",
     "nyc": "15.0.0",
-    "postcss-rtl": "1.7.2",
+    "postcss-rtl": "1.7.3",
     "protractor": "6.0.0",
     "protractor-console-plugin": "0.1.1",
     "superagent": "5.2.2"
