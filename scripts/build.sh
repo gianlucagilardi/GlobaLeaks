@@ -74,7 +74,7 @@ ROOTDIR=$(pwd)
 
 BUILDSRC="GLRelease"
 
-if [ $FIRST_INST -eq 1 ]; then
+if [ "$FIRST_INST" -eq 1 ]; then
   [ -d $BUILDSRC ] && rm -rf $BUILDSRC
   mkdir $BUILDSRC && cd $BUILDSRC
   git clone --depth=1 https://github.com/gianlucagilardi/GlobaLeaks.git 
