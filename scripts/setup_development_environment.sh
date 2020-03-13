@@ -61,7 +61,7 @@ echo "GlobaLeaks Setup Development Environment Script"
 sudo apt-get update
 sudo apt-get install curl dh-apparmor debhelper devscripts dput git libssl-dev python-dev python-pip python-setuptools python-sphinx python-virtualenv python3-dev python3-pip python3-setuptools python3-sphinx python3-venv
 
-git clone https://github.com/globaleaks/GlobaLeaks.git
+git clone https://github.com/gianlucagilardi/GlobaLeaks.git
 if [ "$TAG" != "master"]; then
   cd GlobaLeaks/ && git checkout $TAG && cd ..
 fi
