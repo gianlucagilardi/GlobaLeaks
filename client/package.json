@@ -1,7 +1,7 @@
 {
   "name": "GlobaLeaks",
   "description": "GlobaLeaks - the first opensource framework for anonymous whistleblowing",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "license": "AGPL-3.0",
   "author": "Random GlobaLeaks Developers",
   "repository": {
@@ -37,8 +37,8 @@
   },
   "devDependencies": {
     "eslint": "6.8.0",
-    "gettext-parser": "4.0.2",
-    "grunt": "1.0.4",
+    "gettext-parser": "4.0.3",
+    "grunt": "1.1.0",
     "grunt-angular-templates": "1.2.0",
     "grunt-confirm": "1.0.8",
     "grunt-contrib-clean": "2.0.0",
