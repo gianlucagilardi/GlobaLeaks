@@ -9,8 +9,7 @@ from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.settings import Settings
-from globaleaks.utils.fs import directory_traversal_check
-from globaleaks.utils.utility import read_json_file
+from globaleaks.utils.fs import directory_traversal_check, read_json_file
 
 
 def langfile_path(lang):
@@ -34,16 +33,13 @@ def get_l10n(session, tid, lang):
     :return: A dictionary containing the custom texts configured for a specific language
     """
     if tid != 1:
-        config = ConfigFactory(session, 1)
+        config = ConfigFactory(session, tid)
 
         if config.get_val('mode') != 'default':
             tid = 1
 
     path = langfile_path(lang)
     directory_traversal_check(Settings.client_path, path)
-
-    if not os.path.exists(path):
-        raise errors.ResourceNotFound()
 
     custom_texts = session.query(models.CustomTexts).filter(models.CustomTexts.lang == lang, models.CustomTexts.tid == tid).one_or_none()
     custom_texts = custom_texts.texts if custom_texts is not None else {}
